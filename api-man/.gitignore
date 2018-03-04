@@ -1,13 +1,24 @@
-/node_modules
-/public/hot
-/public/storage
-/storage/*.key
-/vendor
-/.idea
-/.vscode
+### Vagrant ###
+.vagrant/
 /.vagrant
-Homestead.json
-Homestead.yaml
+*.box
+
+### Laravel ###
+/vendor
+node_modules/
 npm-debug.log
-yarn-error.log
+bootstrap/compiled.php
+/public/hot
+app/storage/
+public/storage
+public/hot
+storage/*.key
+.env.*.php
+.env.php
 .env
+Homestead.yaml
+Homestead.json
+
+### PhpStorm ###
+.idea/
+/.idea
