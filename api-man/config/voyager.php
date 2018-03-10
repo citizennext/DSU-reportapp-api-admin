@@ -166,7 +166,7 @@ return [
         ],
 
         'widgets' => [
-            'TCG\\Voyager\\Widgets\\UserDimmer',
+            'App\\Widgets\\UserDimmer',
         ],
 
     ],
@@ -197,7 +197,7 @@ return [
 
     'primary_color' => '#22A7F0',
 
-    'show_dev_tips' => true, // Show development tip "How To Use:" in Menu and Settings
+    'show_dev_tips' => false, // Show development tip "How To Use:" in Menu and Settings
 
     // Here you can specify additional assets you would like to be included in the master.blade
     'additional_css' => [
