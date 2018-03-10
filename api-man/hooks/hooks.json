@@ -1,0 +1,11 @@
+{
+    "last_remote_check": 1520520190,
+    "hooks": {
+        "test-hook": {
+            "name": "test-hook",
+            "description": "This is my first hook.",
+            "version": "v1.0.0",
+            "enabled": false
+        }
+    }
+}
