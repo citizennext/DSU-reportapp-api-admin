@@ -64,6 +64,7 @@ return [
         'not_null'               => 'Nu-i Null',
         'options'                => 'Opțiuni',
         'password'               => 'Parolă',
+        'password_confirm'       => 'Confirmare parolă',
         'permissions'            => 'Permisiuni',
         'profile'                => 'Profil',
         'public_url'             => 'URL public',

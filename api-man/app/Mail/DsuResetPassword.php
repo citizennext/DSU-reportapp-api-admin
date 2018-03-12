@@ -32,13 +32,15 @@ class DsuResetPassword extends Mailable
      */
     public function build()
     {
-//        return $this->markdown(‘emails.users.dsuresetpassword’, [
-//            ‘url’ => url(config('app.url').route('password.reset', $this->token, false)),
-//            ‘name’ => $this->notifiable->name,
-//        ]);
         return $this->markdown('emails.users.dsuresetpassword', [
-            'url' => url(config('app.url').route('password.reset', $this->token, false)),
-            'name' => $this->notifiable->name,
+            'greeting' => __('mail.greetings.informal') . ' ' . $this->notifiable->name . ',',
+            'body_message' => __('mail.body.reset_password'),
+            'level' => 'error',
+            'actionUrl' => url(config('app.url').route('password.reset', $this->token, false)),
+            'actionText' => __('mail.buttons.reset_password'),
+            'salutation' => __('mail.greetings.salutation'),
+            'signature' => __('mail.greetings.signature_tehnic'),
+            'subcopy_content' => __('mail.subcopy.reset_password', ['actionText' => __('mail.buttons.reset_password')]),
         ]);
     }
 }

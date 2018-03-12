@@ -1,25 +1,52 @@
-{{--@component('mail::message')--}}
-{{--# Introduction--}}
-
-{{--The body of your message.--}}
-
-{{--@component('mail::button', ['url' => ''])--}}
-{{--Button Text--}}
-{{--@endcomponent--}}
-
-{{--Thanks,<br>--}}
-{{--{{ config('app.name') }}--}}
-{{--@endcomponent--}}
 @component('mail::message')
-    # Hello {{ $name }}
-    You are receiving this email because we received a password reset request for your account.
-    @component('mail::button', ['url' => $url])
-        Reset Password
-    @endcomponent
-    Regards,<br>
-    {{ config('app.name') }}
-    @component('mail::subcopy', ['url' => $url])
-        If you’re having trouble clicking the "Reset " button, copy and paste the URL below
-        into your web browser: [{{ $url}}]({{ $url}})
-    @endcomponent
+
+{{-- Greeting --}}
+@if (! empty($greeting))
+    # {{ $greeting }}
+@else
+    @if ($level == 'error')
+        # Whoops!
+    @else
+        # Buna!
+    @endif
+@endif
+
+{{-- Body --}}
+@if (! empty($body_message))
+{{ $body_message }}
+@endif
+
+{{-- Action Button --}}
+@isset($actionText)
+<?php
+switch ($level) {
+    case 'success':
+        $color = 'green';
+        break;
+    case 'error':
+        $color = 'red';
+        break;
+    default:
+        $color = 'blue';
+}
+?>
+@component('mail::button', ['url' => $actionUrl, 'color' => $color])
+{{ $actionText }}
+@endcomponent
+@endisset
+
+{{-- Salutation --}}
+@if (! empty($salutation))
+{{ $salutation }}<br>{{ $signature }}
+@else
+Toate cele bune,<br>{{ config('app.name') }}
+@endif
+
+{{-- Subcopy --}}
+@isset($actionText)
+@component('mail::subcopy')
+{{ $subcopy_content }}<br>{{ $actionUrl }}
+@endcomponent
+@endisset
+
 @endcomponent

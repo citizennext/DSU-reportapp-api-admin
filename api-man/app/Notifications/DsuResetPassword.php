@@ -49,11 +49,10 @@ class DsuResetPassword extends Notification
      */
     public function toMail($notifiable)
     {
-        $subject = 'Test reset';
-        return (new Mailable($this->token, $notifiable))->subject($subject)->to($notifiable->email);
-//        return (new MailMessage)
-//            ->line('You are receiving this email because we received a password reset request for your account.')
-//            ->action('Reset Password', url(config('app.url').route('password.reset', $this->token, false)))
-//            ->line('If you did not request a password reset, no further action is required.');
+        $subject = sprintf("[%s] %s", config('app.name'), __('mail.subject.reset_password'));
+        return (new Mailable($this->token, $notifiable))
+            ->from('support@dsu-app.ro', config('app.name'))
+            ->subject($subject)
+            ->to($notifiable->email);
     }
 }
