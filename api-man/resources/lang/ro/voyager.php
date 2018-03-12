@@ -64,6 +64,7 @@ return [
         'not_null'               => 'Nu-i Null',
         'options'                => 'Opțiuni',
         'password'               => 'Parolă',
+        'password_confirm'       => 'Confirmare parolă',
         'permissions'            => 'Permisiuni',
         'profile'                => 'Profil',
         'public_url'             => 'URL public',
@@ -97,9 +98,11 @@ return [
     ],
 
     'login' => [
-        'loggingin'    => 'Logare în sistem',
-        'signin_below' => 'Conectați-vă mai jos:',
-        'welcome'      => 'Bine ați venit la Voyager. Panoul de control ce lipsește în Laravel',
+        'loggingin'         => 'Logare în sistem',
+        'signin_below'      => 'Conectați-vă mai jos:',
+        'welcome'           => 'Bine ați venit la Voyager. Panoul de control ce lipsește în Laravel',
+        'forgot_pass'       => 'Ați uitat parola?',
+        'reset_pasword'     => 'Resetare parolă',
     ],
 
     'profile' => [
