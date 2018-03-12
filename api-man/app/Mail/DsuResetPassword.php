@@ -11,14 +11,18 @@ class DsuResetPassword extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $token;
+    protected $notifiable;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($token, $notifiable)
     {
-        //
+        $this->token = $token;
+        $this->notifiable = $notifiable;
     }
 
     /**
@@ -28,6 +32,13 @@ class DsuResetPassword extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.users.dsuresetpassword');
+//        return $this->markdown(‘emails.users.dsuresetpassword’, [
+//            ‘url’ => url(config('app.url').route('password.reset', $this->token, false)),
+//            ‘name’ => $this->notifiable->name,
+//        ]);
+        return $this->markdown('emails.users.dsuresetpassword', [
+            'url' => url(config('app.url').route('password.reset', $this->token, false)),
+            'name' => $this->notifiable->name,
+        ]);
     }
 }
