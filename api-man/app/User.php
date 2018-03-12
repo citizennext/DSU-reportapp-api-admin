@@ -38,4 +38,12 @@ class User extends \TCG\Voyager\Models\User
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    /**
+     * Get the audit logs that belongs to user.
+     */
+    public function audits()
+    {
+        return $this->hasMany(Audit::class);
+    }
 }
