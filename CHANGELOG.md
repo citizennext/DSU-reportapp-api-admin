@@ -1,3 +1,8 @@
+### [0.0.4](https://github.com/civictechro/DSU-reportapp-api-admin/releases/tag/version%2F0.0.4) ### 
+<small>24.03.2018</small>
+- refactor tabela Users
+- refactor Auth
+- implementare Audits
 ### [0.0.3](https://github.com/civictechro/DSU-reportapp-api-admin/releases/tag/version%2F0.0.3) ### 
 <small>12.03.2018</small>
 - setare si modificare (override) pachet Auth
