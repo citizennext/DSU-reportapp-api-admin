@@ -50,10 +50,10 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
-     * Get the audit logs that belongs to user.
+     * Get the unit that belongs to user.
      */
-    public function audits()
+    public function unitate()
     {
-        return $this->hasMany(Audit::class);
+        return $this->hasOne(Unitate::class);
     }
 }
