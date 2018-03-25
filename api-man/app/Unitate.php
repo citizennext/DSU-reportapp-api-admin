@@ -3,17 +3,27 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Unitate extends Model
 {
+    use SoftDeletes;
+
     // set custom table name
     protected $table = 'unitati';
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * Get the user that owns the unit.
      */
     public function user() {
-        return $this -> belongsTo(User::class);
+        return $this -> hasOne(User::class);
     }
 
     /**

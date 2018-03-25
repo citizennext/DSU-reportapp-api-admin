@@ -41,24 +41,24 @@
                     src="{!! Voyager::image($dataTypeContent->{$row->field}) !!}">
                     @elseif($row->type == 'date')
                     {{ \Carbon\Carbon::parse($dataTypeContent->{$row->field})->format('d.m.Y h:i') }}
+                    @elseif ($row->field === 'unitate_id')
+                    {{App\Unitate::find($dataTypeContent->unitate_id)->nume}}
                     @else
-                    @if($row->field !== 'role_id')
-                    <p>
-                        {{ $dataTypeContent->{$row->field} }}
-                    </p>
-                    @endif
+                        @if($row->field === 'user_belongsto_role_relationship')
+                        <p>
+                            {{ $dataTypeContent->role->display_name }}
+                        </p>
+                        @else
+                        <p>
+                            {{ $dataTypeContent->{$row->field} }}
+                        </p>
+                        @endif
                     @endif
                 </div><!-- panel-body -->
                 @if(!$loop->last)
                 <hr style="margin:0;">
                 @endif
                 @endforeach
-
-                <div class="panel-body" style="padding-top:0;">
-                    <p>
-                        {{$dataTypeContent->role->display_name}}
-                    </p>
-                </div>
 
             </div>
         </div>
