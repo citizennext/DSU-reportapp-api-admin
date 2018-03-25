@@ -1,3 +1,8 @@
+### [0.0.5](https://github.com/civictechro/DSU-reportapp-api-admin/releases/tag/version%2F0.0.5) ### 
+<small>25.03.2018</small>
+- implementare localizare - localitati si judete
+- refactor unitati
+- refactor users
 ### [0.0.4](https://github.com/civictechro/DSU-reportapp-api-admin/releases/tag/version%2F0.0.4) ### 
 <small>24.03.2018</small>
 - refactor tabela Users
