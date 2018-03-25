@@ -59,21 +59,11 @@
                                 @if ($options && isset($options->formfields_custom))
                                     @include('voyager::formfields.custom.' . $options->formfields_custom)
                                 @else
-                                    @if ($row->field === 'user_belongsto_role_relationship')
+                                    @if ($row->field === 'parent_id')
                                     <div class="form-group">
-                                        <label for="role">Rol utilizator</label>
-                                        <select name="role_id" id="role" class="form-control">
-                                        <?php $roles = TCG\Voyager\Models\Role::all(); ?>
-                                        @foreach($roles as $role)
-                                            <option value="{{$role->id}}" @if(isset($dataTypeContent) && $dataTypeContent->role_id == $role->id) selected @endif>{{$role->display_name}}</option>
-                                        @endforeach
-                                        </select>
-                                    </div>
-                                    @elseif ($row->field == 'unitate_id')
-                                    <div class="form-group">
-                                        <label for="unitate">Unitate</label>
-                                        <select name="unitate_id" id="unitate" class="form-control">
-                                            <option value="" selected >Alege o unitate</option>
+                                        <label for="parent">Parinte</label>
+                                        <select name="parent_id" id="parent" class="form-control">
+                                            <option value="" selected>Alege o unitate parinte</option>
                                             <?php $unitati = App\Unitate::all(); ?>
                                             @foreach($unitati as $unitate)
                                                 <option value="{{$unitate->id}}" @if(isset($dataTypeContent) && $dataTypeContent->unitate == $unitate->nume) selected @endif>{{$unitate->nume}}</option>
