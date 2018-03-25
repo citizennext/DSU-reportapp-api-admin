@@ -1,8 +1,22 @@
 @extends('voyager::master')
 
+@section('page_title', __('voyager.generic.viewing').' '.$dataType->display_name_plural)
+
 @section('page_header')
-<h1 class="page-title"><i class="{{ $dataType->icon }}"></i> {{ $dataType->display_name_plural }}
-@if (Voyager::can('add_'.$dataType->name)) <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success"> <i class="voyager-plus"></i> Add New </a> @endif </h1>
+    <div class="container-fluid">
+        <h1 class="page-title">
+            <i class="{{ $dataType->icon }}"></i> {{ $dataType->display_name_plural }}
+        </h1>
+        @can('add',app($dataType->model_name))
+            <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success btn-add-new">
+                <i class="voyager-plus"></i> <span>{{ __('voyager.generic.add_new') }}</span>
+            </a>
+        @endcan
+        @can('delete',app($dataType->model_name))
+            @include('voyager::partials.bulk-delete')
+        @endcan
+        @include('voyager::multilingual.language-selector')
+    </div>
 @stop
 
 @section('content')
