@@ -1,8 +1,22 @@
 @extends('voyager::master')
 
+@section('page_title', __('voyager.generic.viewing').' '.$dataType->display_name_plural)
+
 @section('page_header')
-<h1 class="page-title"><i class="{{ $dataType->icon }}"></i> {{ $dataType->display_name_plural }}
-@if (Voyager::can('add_'.$dataType->name)) <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success"> <i class="voyager-plus"></i> Add New </a> @endif </h1>
+    <div class="container-fluid">
+        <h1 class="page-title">
+            <i class="{{ $dataType->icon }}"></i> {{ $dataType->display_name_plural }}
+        </h1>
+        @can('add',app($dataType->model_name))
+            <a href="{{ route('voyager.'.$dataType->slug.'.create') }}" class="btn btn-success btn-add-new">
+                <i class="voyager-plus"></i> <span>{{ __('voyager.generic.add_new') }}</span>
+            </a>
+        @endcan
+        @can('delete',app($dataType->model_name))
+            @include('voyager::partials.bulk-delete')
+        @endcan
+        @include('voyager::multilingual.language-selector')
+    </div>
 @stop
 
 @section('content')
@@ -18,6 +32,7 @@
                                 <th>Email</th>
                                 <th>Telefon</th>
                                 <th>Adresa</th>
+                                <th>Unitate</th>
                                 <th>Date</th>
                                 <th>Avatar</th>
                                 <th>Rol</th>
@@ -30,7 +45,8 @@
                                 <td>{{ucwords('&nbsp;' . $data->prenume . '&nbsp;' . $data->nume)}}</td>
                                 <td>{{$data->email}}</td>
                                 <td>S:&nbsp;{{$data->telefon_s}}<br />P:&nbsp;{{$data->telefon_p}}</td>
-                                <td>{{$data->adresa}}<br />{{$data->cod_postal}}</td>
+                                <td>{{$data->adresa}}<br />{{$data->cod_postal}}&nbsp;{{$data->localitate}}<br />{{$data->judet}}</td>
+                                <td>{{App\Unitate::find($data->unitate_id)->nume}}<br /><a href="{{ route('voyager.unitati.show', $data->unitate_id) }}" class="btn-sm btn-warning pull-left"> <i class="voyager-eye"></i> Vezi </a></td>
                                 <td>C:&nbsp;{{ \Carbon\Carbon::parse($data->created_at)->format('d.m.Y h:i') }}@if(!is_null($data->deleted_at))<br />D:{{ \Carbon\Carbon::parse($data->deleted_at)->format('d.m.Y h:i') }}@endif</td>
                                 <td><img src="@if( strpos($data->avatar, 'http://') === false && strpos($data->avatar, 'https://') === false){{ Voyager::image( $data->avatar ) }}@else{{ $data->avatar }}@endif" style="width:100px"></td>
                                 <td>{{ $data->role ? $data->role->display_name : '' }}</td>
