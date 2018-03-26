@@ -1,3 +1,8 @@
+### [0.0.6](https://github.com/civictechro/DSU-reportapp-api-admin/releases/tag/version%2F0.0.6) ### 
+<small>26.03.2018</small>
+- implementare Departamente
+- refactor Users, Unitati si adrese
+- constructie relatii intre tabele conform documentatiei
 ### [0.0.5](https://github.com/civictechro/DSU-reportapp-api-admin/releases/tag/version%2F0.0.5) ### 
 <small>25.03.2018</small>
 - implementare localizare - localitati si judete
