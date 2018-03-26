@@ -63,7 +63,7 @@
                                     <div class="form-group">
                                         <label for="role">Rol utilizator</label>
                                         <select name="role_id" id="role" class="form-control">
-                                        <?php $roles = TCG\Voyager\Models\Role::all(); ?>
+                                        <?php $roles = TCG\Voyager\Models\Role::all()->sortBy('name'); ?>
                                         @foreach($roles as $role)
                                             <option value="{{$role->id}}" @if(isset($dataTypeContent) && $dataTypeContent->role_id == $role->id) selected @endif>{{$role->display_name}}</option>
                                         @endforeach
@@ -74,7 +74,7 @@
                                         <label for="unitate">Unitate</label>
                                         <select name="unitate_id" id="unitate" class="form-control">
                                             <option value="" selected >Alege o unitate</option>
-                                            <?php $unitati = App\Unitate::all(); ?>
+                                            <?php $unitati = App\Unitate::all()->sortBy('nume'); ?>
                                             @foreach($unitati as $unitate)
                                                 <option value="{{$unitate->id}}" @if(isset($dataTypeContent) && $dataTypeContent->unitate == $unitate->nume) selected @endif>{{$unitate->nume}}</option>
                                             @endforeach
@@ -85,7 +85,7 @@
                                         <label for="localitate">Localitate</label>
                                         <select name="localitate" id="localitate" class="form-control">
                                             <option value="" selected >Alege o localitate</option>
-                                        <?php $localitati = App\Localitate::all(); ?>
+                                        <?php $localitati = App\Localitate::all()->sortBy('nume'); ?>
                                         @foreach($localitati as $localitate)
                                             <option value="{{$localitate->nume}}" @if(isset($dataTypeContent) && $dataTypeContent->localitate == $localitate->nume) selected @endif>{{$localitate->nume}}</option>
                                         @endforeach

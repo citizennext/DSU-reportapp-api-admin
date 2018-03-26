@@ -59,29 +59,7 @@
                                 @if ($options && isset($options->formfields_custom))
                                     @include('voyager::formfields.custom.' . $options->formfields_custom)
                                 @else
-                                    @if ($row->field === 'parent_id')
-                                    <div class="form-group">
-                                        <label for="parent">Parinte</label>
-                                        <select name="parent_id" id="parent" class="form-control">
-                                            <option value="" selected>Alege o unitate parinte</option>
-                                            <?php $unitati = App\Unitate::all()->sortBy('nume'); ?>
-                                            @foreach($unitati as $unitate)
-                                                <option value="{{$unitate->id}}" @if(isset($dataTypeContent) && $dataTypeContent->unitate == $unitate->nume) selected @endif>{{$unitate->nume}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    @elseif ($row->field === 'departament_id')
-                                    <div class="form-group">
-                                        <label for="departament">Departament</label>
-                                        <select name="departament_id" id="departament" class="form-control">
-                                            <option value="" selected>Alege un departament</option>
-                                            <?php $departamente = App\Departament::all()->sortBy('nume'); ?>
-                                            @foreach($departamente as $departament)
-                                                <option value="{{$departament->id}}" @if(isset($dataTypeContent) && $dataTypeContent->departament == $departament->nume) selected @endif>{{$departament->nume}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    @elseif ($row->field === 'localitate')
+                                    @if ($row->field === 'localitate')
                                     <div class="form-group">
                                         <label for="localitate">Localitate</label>
                                         <select name="localitate" id="localitate" class="form-control">

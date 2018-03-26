@@ -41,4 +41,12 @@ class Unitate extends Model
     {
         return $this->hasMany(Unitate::class, 'parent_id');
     }
+
+    /**
+     * Get the departament  that owns the unit.
+     */
+    public function departament()
+    {
+        return $this->belongsTo(Departament::class, 'departament_id');
+    }
 }
