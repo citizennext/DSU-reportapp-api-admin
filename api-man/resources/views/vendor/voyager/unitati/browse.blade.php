@@ -29,27 +29,21 @@
                         <thead>
                             <tr>
                                 <th>Nume</th>
-                                <th>Email</th>
-                                <th>Telefon</th>
+                                <th>Descriere</th>
+                                <th>Dependenta</th>
                                 <th>Adresa</th>
-                                <th>Unitate</th>
                                 <th>Date</th>
-                                <th>Avatar</th>
-                                <th>Rol</th>
                                 <th class="actions">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($dataTypeContent as $data)
                             <tr>
-                                <td>{{ucwords('&nbsp;' . $data->prenume . '&nbsp;' . $data->nume)}}</td>
-                                <td>{{$data->email}}</td>
-                                <td>S:&nbsp;{{$data->telefon_s}}<br />P:&nbsp;{{$data->telefon_p}}</td>
-                                <td>{{$data->adresa}}<br />{{$data->cod_postal}}&nbsp;{{$data->localitate}}<br />{{$data->judet}}</td>
-                                <td>@if(!is_null($data->unitate_id) && strlen($data->unitate_id) > 0) U:&nbsp;{{App\Unitate::find($data->unitate_id)->nume}}&nbsp;<a href="{{ route('voyager.unitati.show', $data->unitate_id) }}" class="btn-sm btn-warning pull-right"> <i class="voyager-eye"></i> Vezi </a><br />D:&nbsp;<?php $unitateModel = App\Unitate::find($data->unitate_id); ?>{{App\Departament::find($unitateModel->departament_id)->nume}}@endif</td>
+                                <td>{{$data->nume}}</td>
+                                <td>{{$data->descriere}}</td>
+                                <td>D:&nbsp;{{$data->departament->nume}}<br />P:&nbsp;<?php $parentArray =  App\Unitate::find($data->parent_id); ?>{{$parentArray['nume']}}</td>
+                                <td>{{$data->adresa}}<br />{{$data->cod_postal}}&nbsp;{{$data->localitate}}<br />{{$data->judet}}<br />{{$data->telefon}}</td>
                                 <td>C:&nbsp;{{ \Carbon\Carbon::parse($data->created_at)->format('d.m.Y h:i') }}@if(!is_null($data->deleted_at))<br />D:{{ \Carbon\Carbon::parse($data->deleted_at)->format('d.m.Y h:i') }}@endif</td>
-                                <td><img src="@if( strpos($data->avatar, 'http://') === false && strpos($data->avatar, 'https://') === false){{ Voyager::image( $data->avatar ) }}@else{{ $data->avatar }}@endif" style="width:100px"></td>
-                                <td>{{ $data->role ? $data->role->display_name : '' }}</td>
                                 <td class="no-sort no-click"> @if (Voyager::can('delete_'.$dataType->name))
                                     <div class="btn-sm btn-danger pull-right delete" data-id="{{ $data->id }}" id="delete-{{ $data->id }}"><i class="voyager-trash"></i> Sterge</div> @endif
                                     @if (Voyager::can('edit_'.$dataType->name)) <a href="{{ route('voyager.'.$dataType->slug.'.edit', $data->id) }}" class="btn-sm btn-primary pull-right edit"> <i class="voyager-edit"></i> Editeaza </a> @endif
