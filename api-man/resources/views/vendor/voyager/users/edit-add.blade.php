@@ -80,6 +80,14 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    @elseif ($row->field == 'active')
+                                    <div class="form-group">
+                                        <label for="active">Activ</label>
+                                        <select name="active" id="active" class="form-control">
+                                            <option value="0" @if(isset($dataTypeContent) && $dataTypeContent->active == 0) selected @endif>inactiv</option>
+                                            <option value="1" @if(isset($dataTypeContent) && $dataTypeContent->active == 1) selected @endif>activ</option>
+                                        </select>
+                                    </div>
                                     @elseif ($row->field === 'localitate')
                                     <div class="form-group">
                                         <label for="localitate">Localitate</label>
