@@ -43,6 +43,8 @@
                     {{ \Carbon\Carbon::parse($dataTypeContent->{$row->field})->format('d.m.Y h:i') }}
                     @elseif ($row->field === 'unitate_id')
                     {{App\Unitate::find($dataTypeContent->unitate_id)->nume}}
+                    @elseif ($row->field === 'active')
+                    {{$dataTypeContent->active == 0 ? 'inactiv' : 'activ'}}
                     @else
                         @if($row->field === 'user_belongsto_role_relationship')
                         <p>
