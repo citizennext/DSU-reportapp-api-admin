@@ -36,6 +36,7 @@
                                 <th>Date</th>
                                 <th>Avatar</th>
                                 <th>Rol</th>
+                                <th>Activ</th>
                                 <th class="actions">Actions</th>
                             </tr>
                         </thead>
@@ -50,6 +51,7 @@
                                 <td>C:&nbsp;{{ \Carbon\Carbon::parse($data->created_at)->format('d.m.Y h:i') }}@if(!is_null($data->deleted_at))<br />D:{{ \Carbon\Carbon::parse($data->deleted_at)->format('d.m.Y h:i') }}@endif</td>
                                 <td><img src="@if( strpos($data->avatar, 'http://') === false && strpos($data->avatar, 'https://') === false){{ Voyager::image( $data->avatar ) }}@else{{ $data->avatar }}@endif" style="width:100px"></td>
                                 <td>{{ $data->role ? $data->role->display_name : '' }}</td>
+                                <td>{{ $data->active == 0 ? 'inactiv' : 'activ' }}</td>
                                 <td class="no-sort no-click"> @if (Voyager::can('delete_'.$dataType->name))
                                     <div class="btn-sm btn-danger pull-right delete" data-id="{{ $data->id }}" id="delete-{{ $data->id }}"><i class="voyager-trash"></i> Sterge</div> @endif
                                     @if (Voyager::can('edit_'.$dataType->name)) <a href="{{ route('voyager.'.$dataType->slug.'.edit', $data->id) }}" class="btn-sm btn-primary pull-right edit"> <i class="voyager-edit"></i> Editeaza </a> @endif
