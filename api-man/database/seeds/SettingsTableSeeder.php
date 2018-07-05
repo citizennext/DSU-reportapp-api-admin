@@ -129,6 +129,18 @@ class SettingsTableSeeder extends Seeder
                 'group'        => 'Admin',
             ])->save();
         }
+
+        $setting = $this->findSetting('api.api_key_expire');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'API Key Expire (minutes)',
+                'value'        => 30,
+                'details'      => '',
+                'type'         => 'int',
+                'order'        => 1,
+                'group'        => 'Admin',
+            ])->save();
+        }
     }
 
     /**
