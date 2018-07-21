@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDeletedActiveToUsersTable extends Migration
+class AddDeletedAtToPermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AddDeletedActiveToUsersTable extends Migration
      */
     public function up()
     {
-      Schema::table('users', function (Blueprint $table) {
-        $table->softDeletes();
-        $table->unsignedTinyInteger('active')->default(0);
-      });
+        Schema::table('permissions', function (Blueprint $table) {
+          $table->softDeletes();
+        });
     }
 
     /**
@@ -26,9 +25,8 @@ class AddDeletedActiveToUsersTable extends Migration
      */
     public function down()
     {
-      Schema::table('users', function (Blueprint $table) {
-        $table->dropSoftDeletes();
-        $table->dropColumn('active');
-      });
+        Schema::table('permissions', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }
