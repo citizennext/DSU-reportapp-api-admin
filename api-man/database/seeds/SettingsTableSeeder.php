@@ -125,7 +125,7 @@ class SettingsTableSeeder extends Seeder
                 'value'        => '',
                 'details'      => '',
                 'type'         => 'text',
-                'order'        => 1,
+                'order'        => 5,
                 'group'        => 'Admin',
             ])->save();
         }
@@ -137,7 +137,31 @@ class SettingsTableSeeder extends Seeder
                 'value'        => 30,
                 'details'      => '',
                 'type'         => 'int',
-                'order'        => 1,
+                'order'        => 6,
+                'group'        => 'Admin',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.api.email_support');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Support Email Address',
+                'value'        => 'support@example.com',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 7,
+                'group'        => 'Admin',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.api.support_signature');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => 'Support Email Signature',
+                'value'        => 'Support',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 8,
                 'group'        => 'Admin',
             ])->save();
         }
